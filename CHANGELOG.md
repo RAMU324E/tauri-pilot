@@ -26,6 +26,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
+- `logs --level error` now records uncaught exceptions and unhandled
+  promise rejections, not only `console.*` calls. Rejections are prefixed
+  `Unhandled rejection: `; the human-readable renderer prints `source`
+  when the bridge set it. Failed resource loads (`<img>`/`<script>` 404)
+  stay out of the buffer. [#188]
+
 - `snapshot` no longer prints `value="0"` on every `<li>`. The bridge read
   `HTMLLIElement.value`, which reflects the `value` attribute and returns `0`
   when the attribute is absent or does not parse as an integer, in an `<ol>`
